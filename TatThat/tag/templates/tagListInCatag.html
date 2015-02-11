@@ -1,0 +1,32 @@
+<div class="col-md-6">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        {% for catag_tag in catag_tag_list %}
+            {% if forloop.counter0 == 3 %}
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="false">
+            {% endif %}
+            <div class="panel panel-danger">
+                <div class="panel-heading" role="tab" id="{{ catag_tag.catag }}-heading">
+                    <h4 class="panel-title">
+                        <a class={% if not forloop.first or forloop.conter0 != 3 %}"collapsed"{% endif %} data-toggle="collapse" data-parent="#{% if forloop.counter0 < 3 %}accordion{% else %}accordion2{% endif %}" href="#{{ catag_tag.catag }}-collapse" aria-expanded="{% if forloop.first or forloop.conter0 == 3 %}true{% else %}false{% endif %}" aria-controls="{{ catag_tag.catag }}-collapse">
+                            {{ catag_tag.catag }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="{{ catag_tag.catag }}-collapse" class="panel-collapse collapse {% if forloop.first or forloop.conter0 == 3 %}in{% endif %}" role="tabpanel" aria-labelledby="{{ catag_tag.catag }}-heading">
+                    <div class="panel-body" id="panel-default-fullwidth-body">
+                        <div data-toggle="buttons">
+                            {% for tag in catag_tag.tag_list %}
+                                <label id="{{ tag }}" class="btn btn-default mb20">
+                                    <input type="checkbox" autocomplete="off">{{ tag }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

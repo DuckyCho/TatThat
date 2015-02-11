@@ -1,0 +1,43 @@
+{% extends "index_base.html" %}
+{% block contents %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-pic">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                 <div class="col-lg-12 mt20 text-center">
+                     <a href="{{ pic.url }}">
+                        <img class="img-responsive-nonblock" src="{{ pic.url }}">
+                     </a>
+                 </div>
+            </div>
+            <div class="panel-footer">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% for tag in tags %}
+                            <div class="btn btn-tag">{{ tag }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="page-header"></div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <a href="{% if daily %}{% url 'index' %}{% else %}{% url 'picDetail' pk=1 %}{% endif %}">
+                            <div class="btn btn-danger"><span class="glyphicon glyphicon-th-list"></span>   목록으로</div>
+                            </a>
+                            <div class="btn btn-danger"><span class="glyphicon glyphicon-plus"></span>   스크랩</div>
+                        </div>
+                        <div class="col-lg-3">
+                            <h6 class="text-right">
+                                <span class="glyphicon glyphicon-share-alt"></span>  {{ scrap_count }}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

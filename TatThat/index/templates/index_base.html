@@ -1,0 +1,89 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'style.css' %}" rel="stylesheet" media="screen">
+</head>
+
+<body>
+
+    <!--    <nav class="navbar navbar-default navbar-fixed-top">-->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url "index" %}">
+                    <div class="brand-image"></div>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="{% block isActiveSearch %}{% endblock %}"><a href={% url "searchMain" %}>SEARCH</a>
+                    </li>
+                    <li class="{% block isActiveShop %}{% endblock %}"><a href="#">SHOP</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">조영대 님<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">내 정보</a>
+                            </li>
+                            <li><a href="#">구매내역</a>
+                            </li>
+                            <li><a href="#">스크랩북</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">로그아웃</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+      {% block contents %}
+      {% endblock %}
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <ul class="list-unstyled">
+                    <li><a href="http://twitter.com">twitter</a>
+                    </li>
+                    <li><a href="http://facebook.com">facebook</a>
+                    </li>
+                    <li><a href="http://instagram.com">instagram</a>
+                    </li>
+                </ul>
+                <p>
+                    2015, <a href="./index.html">TatThat</a>
+                </p>
+                <p>
+                    Made by <a href="./index.html">TatThat</a> Team.
+                </p>
+                <p>
+                    Contact : zootyducky@gmail.com / 010-8998-0197
+                </p>
+                <p>
+                    COPYRIGHT(C) 2015 <a href="./index.html">TatThat</a> ALL RIGHTS RESERVED
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
