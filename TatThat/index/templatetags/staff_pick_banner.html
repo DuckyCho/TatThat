@@ -1,0 +1,37 @@
+<div id="staffPick" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {% for pic in staff_picks %}
+                {% if forloop.first %}
+                    <li data-target="#staffPick" data-slide-to="{{ pic.id }}" class="active"></li>
+                {% else %}
+                    <li data-target="#staffPick" data-slide-to="{{ pic.id }}"></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            {% for pic in staff_picks %}
+                {% if forloop.first %}
+                    <div class="item active">
+                {% else %}
+                    <div class="item">
+                {% endif %}
+                <img src="{{ pic.path }}" alt="{{ pic.caption }}">
+                        <div class="carousel-caption">
+                            {{ pic.caption }}
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#staffPick" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#staffPick" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

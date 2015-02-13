@@ -1,5 +1,33 @@
 {% extends "index_base.html" %}
+{% load pic_list %}
+{% load staff_pick_banner %}
 {% block contents %}
-    {{ staff_pick_contents }}
-    {{ daily_tat_contents }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default staff-pick">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        STAFF PICKS
+                    </div>
+                </div>
+                {% staff_pick_banner %}
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default staff-pick">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <span class="glyphicon glyphicon-picture"></span>
+                            DAILY TATS
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {% pic_list title='dailyTats' args=none %}
+                    </div>
+                </div>
+            </div>
+       </div>
+
 {% endblock %}
