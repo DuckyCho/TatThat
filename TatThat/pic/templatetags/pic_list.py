@@ -30,6 +30,12 @@ def pic_list(title,args):
                         pics.append(pic_obj)
                     tag_list = TagInPic.objects.filter(pic_id_id=pic_obj.id)[:2]
                     tags.append(tag_list)
+        back_page_url = '/search/tag/'
+        for arg in args:
+                back_page_url += arg
+                if arg is not args[-1]:
+                    back_page_url += '+'
+        context['back_page_url'] = back_page_url
 
     else:
         daily_tat = DailyTats.objects.all()

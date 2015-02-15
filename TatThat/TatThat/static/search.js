@@ -1,11 +1,33 @@
 function initEvtListener(){
     initSwapSearchModeEvtListener()
     initSelectTagEvtListener()
+    initSearchButtonEvtListener()
     var curSearchMode = document.getElementById("curSearchMode")
     document.getElementById("searchMode").style.height = curSearchMode.offsetHeight + "px"
     document.getElementById("searchButton").style.height = curSearchMode.offsetHeight + "px"
 }
+function initSearchButtonEvtListener(){
+    var searchButton = document.getElementById('searchButton')
+    searchButton.addEventListener('click',redirectSearchResultPage,false)
+}
 
+function redirectSearchResultPage(){
+    var curSearchMode = document.getElementById('curSearchMode')
+    if(curSearchMode.innerText ==="태그검색"){
+        var searchBar = document.getElementById('search-bar')
+        var tagList = searchBar.children
+        var length = searchBar.children.length
+        var searchQuery = ""
+        for(var i = 0 ; i < length ; i++){
+            searchQuery += tagList[i].innerText
+            if(i != length-1){
+                searchQuery += '+'
+            }
+        }
+        window.location.href="/search/tag/"+searchQuery
+    }
+    else{}
+}
 function initSwapSearchModeEvtListener(){
     var candidate = document.getElementById('candidateSearchMode')
     if(candidate.addEventListener){
