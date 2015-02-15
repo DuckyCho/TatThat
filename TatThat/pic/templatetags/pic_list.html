@@ -1,15 +1,23 @@
 {% load tag_button %}
-{% for pic in pics %}
-<div class="col-md-3">
-    <a href="{% if isDailyTats %}{% url "picDetail_daily" pk=pic.id %}{% else %}{% endif %}">
-        <div class="issueContainer-vert" style="background-image:url('{{ pic.url }}'); background-size:cover; background-position:center;">
-            <div class="pageBar"></div>
-            <div class="issueInfo-vert">
-                <div class="issueHeader-vert">{{ tags.0 }} / {{ tags.1 }}</div>
-                <p class="issueExcerpt-vert"></p>
-                {% tag_button pic.id %}
+{% if isResultEmpty %}
+    <div class="text-center">
+        <h4>
+            검색 결과가 없습니다.
+        </h4>
+    </div>
+{% else %}
+    {% for pic, tag in pics %}
+    <div class="col-md-3">
+        <a href="{% if isDailyTats %}{% url "picDetail_daily" pk=pic.id %}{% else %}{% url "picDetail" pk=pic.id %}{% endif %}">
+            <div class="issueContainer-vert" style="background-image:url('{{ pic.url }}'); background-size:cover; background-position:center;">
+                <div class="pageBar"></div>
+                <div class="issueInfo-vert">
+                    <div class="issueHeader-vert">{{ tag.0 }} / {{ tag.1 }}</div>
+                    <p class="issueExcerpt-vert"></p>
+                    {% tag_button pic.id %}
+                </div>
             </div>
-        </div>
-    </a>
-</div>
-{% endfor %}
+        </a>
+    </div>
+    {% endfor %}
+{% endif %}
