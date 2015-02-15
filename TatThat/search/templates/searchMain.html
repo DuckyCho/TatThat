@@ -8,16 +8,24 @@
             <div class="col-md-12">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <div class="btn btn-danger" id="curSearchMode">단어검색</div>
+                        <div class="btn btn-danger" id="curSearchMode">{% if isTagSearchResult %}태그검색{% else %}단어검색{% endif %}</div>
                         <a class="btn btn-danger dropdown-toggle" id="searchMode" data-toggle="dropdown" >
                             <span class="caret mt10"></span>
                         </a>
                         <ul class="dropdown-menu" id="candidateSearchMode">
-                            <li class="cursor-pointer"><a>태그검색</a>
+                            <li class="cursor-pointer"><a>{% if isTagSearchResult %}단어검색{% else %}태그검색{% endif %}</a>
                             </li>
                         </ul>
                     </span>
+                    {% if isTagSearchResult %}
+                        <div id="search-bar" type="text" class="form-control" placeholder="검색할 단어를 입력해 주세요">
+                            {% for arg in args %}
+                                <span class="btn-sm btn-danger cursor-pointer mr5 glyphicon glyphicon-remove" tag-name="{{ arg }}">{{ arg }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
                         <input id="search-bar" type="text" class="form-control" placeholder="검색할 단어를 입력해 주세요">
+                    {% endif %}
                     <span class="input-group-btn">
                         <button id="searchButton" class="btn btn-danger" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>

@@ -2,9 +2,23 @@ function initEvtListener(){
     initSwapSearchModeEvtListener()
     initSelectTagEvtListener()
     initSearchButtonEvtListener()
+    activateTagButtonInSearchResult()
     var curSearchMode = document.getElementById("curSearchMode")
     document.getElementById("searchMode").style.height = curSearchMode.offsetHeight + "px"
     document.getElementById("searchButton").style.height = curSearchMode.offsetHeight + "px"
+}
+function activateTagButtonInSearchResult(){
+    var searchBar = document.getElementById('search-bar')
+    var tags = searchBar.children
+    var tagCount = tags.length
+    for(var i = 0 ; i < tagCount ; i++){
+        var button = document.getElementById(tags[i].innerText)
+        if( button != null) {
+            var classAttr = button.getAttribute('class')
+            addDeleteEvtListener(tags[i])
+            button.setAttribute('class', classAttr + ' active')
+        }
+    }
 }
 function initSearchButtonEvtListener(){
     var searchButton = document.getElementById('searchButton')
@@ -24,7 +38,15 @@ function redirectSearchResultPage(){
                 searchQuery += '+'
             }
         }
-        window.location.href="/search/tag/"+searchQuery
+        if(searchQuery === ""){
+            alert("태그를 선택해 주세요!")
+        }
+        else{
+            window.location.href="/search/tag/"+searchQuery
+        }
+
+
+
     }
     else{}
 }

@@ -24,21 +24,24 @@ class SearchMainView(ListView):
         return context
 
 
-class SearchResultView(SearchMainView):
+class TagSearchResultView(SearchMainView):
     model = TagCatag
     template_name = "search_result.html"
 
     def get_context_data(self, **kwargs):
-        context = super(SearchResultView, self).get_context_data(**kwargs)
+        context = super(TagSearchResultView, self).get_context_data(**kwargs)
         current_url = self.request.path_info
         pattern = '^/search/tag/(.*)'
         args_str = re.match(pattern,current_url).group(1)
         args_list = args_str.split('+')
         args_list_decoded = []
+
         for arg in args_list:
             new_arg = urllib2.unquote(arg)
             args_list_decoded.append(new_arg)
 
         context['title'] = 'tag_search'
         context['args'] = args_list_decoded
+        context['isTagSearchResult'] = True
+
         return context
