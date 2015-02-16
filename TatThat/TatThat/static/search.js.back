@@ -12,7 +12,7 @@ function activateTagButtonInSearchResult(){
     var tags = searchBar.children
     var tagCount = tags.length
     for(var i = 0 ; i < tagCount ; i++){
-        var button = document.getElementById(tags[i].textContent)
+        var button = document.getElementById(tags[i].innerText)
         if( button != null) {
             var classAttr = button.getAttribute('class')
             addDeleteEvtListener(tags[i])
@@ -27,13 +27,13 @@ function initSearchButtonEvtListener(){
 
 function redirectSearchResultPage(){
     var curSearchMode = document.getElementById('curSearchMode')
-    if(curSearchMode.textContent ==="태그검색"){
+    if(curSearchMode.innerText ==="태그검색"){
         var searchBar = document.getElementById('search-bar')
         var tagList = searchBar.children
         var length = searchBar.children.length
         var searchQuery = ""
         for(var i = 0 ; i < length ; i++){
-            searchQuery += tagList[i].getAttribute('tag-name')
+            searchQuery += tagList[i].innerText
             if(i != length-1){
                 searchQuery += '+'
             }
@@ -72,16 +72,16 @@ function swapSearchMode(event){
     var replaceStr
     if(event.target === undefined){
         replaceTarget = document.getElementById('candidateSearchMode').children[event].children[0]
-        replaceStr = replaceTarget.textContent
+        replaceStr = replaceTarget.innerText
     }
     else{
         replaceTarget = event.target
-        replaceStr = event.target.textContent
+        replaceStr = event.target.innerText
     }
     var curSearchMode = document.getElementById('curSearchMode')
-    var curSearchMode_text = curSearchMode.textContent
-    curSearchMode.textContent = replaceStr
-    replaceTarget.textContent = curSearchMode_text
+    var curSearchMode_text = curSearchMode.innerText
+    curSearchMode.innerText = replaceStr
+    replaceTarget.innerText = curSearchMode_text
 
 }
 
@@ -129,7 +129,7 @@ function selectTag(event){
         swapSearchBarStatus()
         searchBar = document.getElementById("search-bar")
     }
-    tagButton = getTagButtonInSearchBar(searchBar,event.target.textContent)
+    tagButton = getTagButtonInSearchBar(searchBar,event.target.innerText)
     if(tagButton){
         searchBar.removeChild(tagButton)
     }
@@ -137,7 +137,7 @@ function selectTag(event){
         tagButton = document.createElement("span")
         tagButton.setAttribute('class','btn-sm btn-danger cursor-pointer mr5 glyphicon glyphicon-remove')
         tagButton.setAttribute('tag-name',event.target.getAttribute('id'))
-        tagButton.textContent = event.target.textContent
+        tagButton.innerText = event.target.innerText
         searchBar.appendChild(tagButton)
         addDeleteEvtListener(tagButton)
     }
@@ -161,7 +161,7 @@ function getTagButtonInSearchBar(searchBar, tagStr){
     var children = searchBar.children
     var length = children.length
     for(var i = 0 ; i < length ; i++){
-        if(children[i].textContent === tagStr){
+        if(children[i].innerText === tagStr){
             return children[i]
         }
     }
