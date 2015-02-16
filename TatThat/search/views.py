@@ -31,7 +31,7 @@ class TagSearchResultView(SearchMainView):
     def get_context_data(self, **kwargs):
         context = super(TagSearchResultView, self).get_context_data(**kwargs)
         current_url = self.request.path_info
-        pattern = '^/search/tag/(.*)'
+        pattern = '^/search/tag/(.*)/'
         args_str = re.match(pattern,current_url).group(1)
         args_list = args_str.split('+')
         args_list_decoded = []
@@ -43,5 +43,5 @@ class TagSearchResultView(SearchMainView):
         context['title'] = 'tag_search'
         context['args'] = args_list_decoded
         context['isTagSearchResult'] = True
-
+        context['query'] = self.kwargs['query']
         return context

@@ -8,8 +8,11 @@
 {% else %}
     {% for pic, tag in pics %}
     <div class="col-md-3">
-        <a href="{% if isDailyTats %}{% url "picDetail_daily" pk=pic.id %}{% else %}{% url "picDetail" pk=pic.id %}{% endif %}">
+
             <div class="issueContainer-vert" style="background-image:url('{{ pic.url }}'); background-size:cover; background-position:center;">
+                <a href="{% if isDailyTats %}{% url "picDetail_daily" pk=pic.id %}{% else %}{% url "picDetail" pk=pic.id %}{% endif %}">
+                <div class="fit-parent"></div>
+                </a>
                 <div class="pageBar"></div>
                 <div class="issueInfo-vert">
                     <div class="issueHeader-vert">{{ tag.0 }} / {{ tag.1 }}</div>

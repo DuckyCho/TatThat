@@ -14,8 +14,6 @@ class PicDetailView(DetailView):
             context['daily'] = True
         return context
 
-    def get_success_url(self):
-        return reverse('searchResult')
 
 
 

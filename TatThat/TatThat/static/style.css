@@ -120,6 +120,11 @@ body{
     }
 }
 
+div #search-bar{
+    overflow: auto;
+    line-height: 2;
+}
+
 .panel{
     background-color: rgba(0,0,0,0.0);
     border : 0;
@@ -259,7 +264,10 @@ body{
 .issueContainer-group > .issueContainer:nth-child(2){
     margin-top : 30px;
 }
-
+.fit-parent{
+    width: 100%;
+    height: 100%;
+}
 .issueContainer {
 	clear:both;
 	margin-top: 30px;
