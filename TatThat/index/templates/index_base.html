@@ -35,6 +35,9 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
+                        {% if user.is_anonymous %}
+                            <a href="{% url 'login' %}">로그인<b class="caret"></b></a>
+                        {% else %}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">조영대 님<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">내 정보</a>
@@ -47,6 +50,7 @@
                             <li><a href="#">로그아웃</a>
                             </li>
                         </ul>
+                        {% endif %}
                     </li>
                 </ul>
             </div>

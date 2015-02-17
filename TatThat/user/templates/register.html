@@ -1,0 +1,60 @@
+{% extends 'index_base.html' %}
+{% block contents %}
+    <div class="panel-default col-sm-8 col-sm-offset-2">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <span class="glyphicon glyphicon-pencil mr10"></span>  회원가입
+            </div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="" method="post">
+                {% csrf_token %}
+                <div class="form-group mt4em">
+                    <label for="username" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-7">
+                        <input type="email" class="form-control" name="username" id="username" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-group mt20">
+                    <label for="password" class="col-sm-3 control-label" >비밀번호</label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirmation" class="col-sm-3 control-label">비밀번호 재입력</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" name="password-confirmation" id="password-confirmation" placeholder="비밀번호를 다시 입력해주세요." required>
+                        </div>
+                </div>
+                <div class="form-group mt20">
+                    <label for="email" class="col-sm-3 control-label">이름</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="실명을 사용해주세요." required>
+                        </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1 terms mt4em">
+                    {% include 'service-terms.html' %}
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <input type="checkbox" id="service-terms" required>  서비스 이용 약관에 동의합니다.
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1 terms mt4em">
+                    {% include 'privacy-policy.html' %}
+                </div>
+                 <div class="form-group">
+                     <div class="col-sm-10 col-sm-offset-1">
+                         <input type="checkbox" id="privacy-policy"required>  개인정보수집 및 이용에 동의합니다.
+                     </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12  col-sm-offset-1">
+                            <button type="submit" class="btn btn-danger col-sm-4 col-sm-offset-3 mt4em">회원가입</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
