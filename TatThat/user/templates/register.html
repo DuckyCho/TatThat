@@ -1,4 +1,5 @@
 {% extends 'index_base.html' %}
+{% load staticfiles %}
 {% block contents %}
     <div class="panel-default col-sm-8 col-sm-offset-2">
         <div class="panel-heading">
@@ -7,25 +8,29 @@
             </div>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal" data-toggle="validator" role="form" action="" method="post">
                 {% csrf_token %}
                 <div class="form-group mt4em">
                     <label for="username" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control" name="username" id="username" placeholder="Email" required>
+                        <input type="email" class="form-control" name="username" id="username"
+                                {% if isEmailError %}
+                                placeholder="{{ isEmailError }}은 이미 가입된 이메일입니다."
+                                {% else %}
+                                placeholder="email"
+                                {% endif %} required>
+
                     </div>
                 </div>
+
                 <div class="form-group mt20">
-                    <label for="password" class="col-sm-3 control-label" >비밀번호</label>
+                    <label for="password" class="col-sm-3 control-label">비밀번호</label>
                     <div class="col-sm-7">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호" required>
+                            <input type="password" data-minlength="6" name="password" class="form-control" id="password" placeholder="비밀번호" required>
+                            <div class="help-block">최소 6자 이상</div>
+                            <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-match-error="비밀번호가 일치하지 않습니다." placeholder="비밀번호를 다시 입력해주세요." required>
+                            <div class="help-block with-errors"></div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="password-confirmation" class="col-sm-3 control-label">비밀번호 재입력</label>
-                        <div class="col-sm-7">
-                            <input type="password" class="form-control" name="password-confirmation" id="password-confirmation" placeholder="비밀번호를 다시 입력해주세요." required>
-                        </div>
                 </div>
                 <div class="form-group mt20">
                     <label for="email" class="col-sm-3 control-label">이름</label>
@@ -57,4 +62,5 @@
             </form>
         </div>
     </div>
+    <script src="{% static 'bootstrap/js/validator.js' %}"></script>
 {% endblock %}

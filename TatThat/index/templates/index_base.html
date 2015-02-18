@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <html>
 
 <head>
@@ -8,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'style.css' %}" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -35,21 +35,22 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        {% if user.is_anonymous %}
-                            <a href="{% url 'login' %}">로그인<b class="caret"></b></a>
+
+                        {% if user.is_authenticated %}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} 님<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">내 정보</a>
+                                </li>
+                                <li><a href="#">구매내역</a>
+                                </li>
+                                <li><a href="#">스크랩북</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout' %}">로그아웃</a>
+                                </li>
+                            </ul>
                         {% else %}
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">조영대 님<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">내 정보</a>
-                            </li>
-                            <li><a href="#">구매내역</a>
-                            </li>
-                            <li><a href="#">스크랩북</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">로그아웃</a>
-                            </li>
-                        </ul>
+                            <a href="{% url 'login' %}">로그인<b class="caret"></b></a>
                         {% endif %}
                     </li>
                 </ul>
@@ -88,7 +89,7 @@
         </div>
         </div>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 
