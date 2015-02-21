@@ -1,11 +1,17 @@
 @font-face {
     font-family: HanSans;
     src: url("../../font/SourceHanSansKR-Normal.otf");
+    font-weight:normal;
 }
 @font-face {
     font-family: HanSans;
     src: url("../../font/SourceHanSansKR-Bold.otf");
     font-weight:bold;
+}
+@font-face {
+    font-family: HanSans;
+    src: url("../../font/SourceHanSansKR-Heavy.otf");
+    font-weight:500;
 }
 @import url("//fonts.googleapis.com/css?family=Roboto:400,700");
 /*!

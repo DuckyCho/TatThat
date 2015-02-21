@@ -11,14 +11,15 @@
             <form class="form-horizontal" data-toggle="validator" role="form" action="" method="post">
                 {% csrf_token %}
                 <div class="form-group mt4em">
-                    <label for="username" class="col-sm-3 control-label">Email</label>
+                    <label for="username" class="col-sm-3 control-label">ID</label>
                     <div class="col-sm-7">
-                        <input type="email" class="form-control" name="username" id="username"
+                        <input type="text" data-minlength="4" class="form-control" name="username" id="username"
                                 {% if isEmailError %}
-                                placeholder="{{ isEmailError }}은 이미 가입된 이메일입니다."
+                                placeholder="{{ isUsernameError }}은 이미 가입된 ID입니다."
                                 {% else %}
-                                placeholder="email"
+                                placeholder="최소 4자 이상"
                                 {% endif %} required>
+                    <div class="help-block">최소 4자 이상</div>
 
                     </div>
                 </div>
@@ -33,9 +34,15 @@
                     </div>
                 </div>
                 <div class="form-group mt20">
-                    <label for="email" class="col-sm-3 control-label">이름</label>
+                    <label for="email" class="col-sm-3 control-label">Email</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="실명을 사용해주세요." required>
+                            <input type="email" class="form-control" name="email" id="email"
+                                {% if isEmailError %}
+                                placeholder="{{ isEmailError }}은 이미 가입된 Email입니다."
+                                {% else %}
+                                placeholder="email"
+                                {% endif %} required>
+                            <input type="checkbox" name="subscribe" id="subscribe">  인기 타투 도안, 프로모션 정보 수신 허용(선택사항)
                         </div>
                 </div>
                 <div class="col-sm-10 col-sm-offset-1 terms mt4em">
@@ -43,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-1">
-                        <input type="checkbox" id="service-terms" required>  서비스 이용 약관에 동의합니다.
+                        <input type="checkbox" id="service-terms" required>  서비스 이용 약관에 동의합니다.(필수사항)
                     </div>
                 </div>
                 <div class="col-sm-10 col-sm-offset-1 terms mt4em">
@@ -51,7 +58,7 @@
                 </div>
                  <div class="form-group">
                      <div class="col-sm-10 col-sm-offset-1">
-                         <input type="checkbox" id="privacy-policy"required>  개인정보수집 및 이용에 동의합니다.
+                         <input type="checkbox" id="privacy-policy"required>  개인정보수집 및 이용에 동의합니다.(필수사항)
                      </div>
                 </div>
                 <div class="form-group">

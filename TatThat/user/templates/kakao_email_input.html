@@ -1,0 +1,54 @@
+{% extends 'index_base.html' %}
+{% load socialaccount %}
+{% block contents %}
+    {% if user.is_authenticated %}
+        <script>
+             window.location="/accounts/logout";
+        </script>
+    {% else %}
+    <div class="row mt20">
+        <div class="jumbotron background-kakao-login col-md-6 col-md-offset-3 mt4em" style="text-shadow:1px 1px 4px #000000; height: 30em; padding-top: 30px">
+            <h6 style="color:#ffffff;">
+                거의 다 됐어요!
+            </h6>
+            <div class="login-divider mt4em" style="background-color: #ffffff; height:3px; box-shadow: 1px 1px 4px #000000"></div>
+            <p style="font-weight: normal; font-size: 1.1em;">
+                TatThat 회원이 되려면<br>
+                이름, 유효한 이메일을 추가로 입력해야 합니다.
+            </p>
+            <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label for="last_name" class="col-sm-2 control-label">성</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="last_name" id="last_name" maxlength="3" placeholder="성" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">이름</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="first_name" id="last_name" placeholder="성을 제외한 나머지 이름" maxlength="15" required>
+                    </div>
+                </div>
+                <div class="form-group mt20">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" id="email"
+                            {% if isEmailError %}
+                            placeholder="{{ isEmailError }}은 이미 가입된 Email입니다."
+                            {% else %}
+                            placeholder="email"
+                            {% endif %} required>
+                        <input type="checkbox" name="subscribe" id="subscribe">  인기 타투 도안, 프로모션 정보 수신 (선택사항)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12  col-sm-offset-1">
+                        <button type="submit" class="btn btn-danger col-sm-4 col-sm-offset-3">회원가입</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

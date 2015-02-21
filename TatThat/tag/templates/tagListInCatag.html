@@ -9,11 +9,11 @@
             {% endif %}
             <div class="panel panel-danger">
                 <div class="panel-heading" role="tab" id="{{ catag_tag.catag }}-heading">
-                    <h4 class="panel-title">
+                    <div class="panel-title" style="color: #FFFFFF;">
                         <a class={% if not forloop.first or forloop.conter0 != 3 %}"collapsed"{% endif %} data-toggle="collapse" data-parent="#{% if forloop.counter0 < 3 %}accordion{% else %}accordion2{% endif %}" href="#{{ catag_tag.catag }}-collapse" aria-expanded="{% if forloop.first or forloop.conter0 == 3 %}true{% else %}false{% endif %}" aria-controls="{{ catag_tag.catag }}-collapse">
                             {{ catag_tag.catag }}
                         </a>
-                    </h4>
+                    </div>
                 </div>
                 <div id="{{ catag_tag.catag }}-collapse" class="panel-collapse collapse {% if forloop.first or forloop.conter0 == 3 %}in{% endif %}" role="tabpanel" aria-labelledby="{{ catag_tag.catag }}-heading">
                     <div class="panel-body" id="panel-default-fullwidth-body">

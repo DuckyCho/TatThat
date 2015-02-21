@@ -59,6 +59,18 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
+.background-kakao-login{
+    background: url("./img/kakao_back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background-not-yet{
+    background: url("./img/notyet_back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .login-divider{
     height: 1px;
     background: #FFFFFF;
@@ -68,9 +80,19 @@ body{
 .form-control{
     border : 0px;
 }
+.white-line{
+    border-bottom: 1px solid #FFFFFF;
+}
 .navbar-default{
     border-color: transparent;
     background-color: #000000;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+    background-color: #FFFFFF;
+    color: #000000;
+    border: solid 1px #FFFFFF;
 }
 .navbar-right{
     margin-left: 15px;
@@ -208,6 +230,9 @@ div #search-bar{
 .btn-kakao{
     background-color: #ffff00;
     color: #888888;
+}
+a .btn-facebook{
+    color: #FFFFFF;
 }
 .btn-facebook{
     background-color: #3b5998;
@@ -512,4 +537,10 @@ div #search-bar{
     height: 10em;
     overflow: scroll;
     margin-bottom: 1em;
+}
+.errorlist > li{
+    list-style-type: none;
+}
+.text-black{
+    color: #000000;
 }

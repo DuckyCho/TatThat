@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+
+{% block content %}
+    {% if isSaved %}
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>변경사항이 저장되었습니다.</strong>
+        </div>
+    {% endif %}
+    <div class="jumbotron background-login col-md-6 col-md-offset-3 mt4em" style="text-shadow:1px 1px 4px #000000; height: 22em;">
+            <h4 style="color:#ffffff;">
+                {{ user.username }}
+            </h4>
+            <div class="login-divider mt4em" style="background-color: #ffffff; height:3px; box-shadow: 1px 1px 4px #000000"></div>
+            <p style="font-weight: normal; font-size: 1.1em;">
+                이메일 : {{ user.email }}<br>
+                스크랩 : {{ scrap_count }}
+            </p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input name="subscribe" id="subscribe" type="checkbox" {% if isSubscribe %}checked{% endif %} style=""> 인기 타투 도안, 프로모션 정보 수신 허용(선택사항)
+            <button type="submit" class="btn btn-sm btn-danger mt20" style="text-shadow: 0px 0px 0px #ffffff">변경사항저장</div>
+        </form>
+    </div>
+{% endblock %}

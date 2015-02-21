@@ -1,5 +1,11 @@
 {% extends 'index_base.html' %}
+{% load socialaccount %}
 {% block contents %}
+    {% if user.is_authenticated %}
+        <script>
+             window.location="/accounts/logout";
+        </script>
+    {% else %}
     <div class="row mt20">
         <div class="jumbotron background-login col-md-6 col-md-offset-3 mt4em">
             {% if isFail %}
@@ -8,15 +14,20 @@
                         <strong>로그인 실패!</strong>  잘못된 정보를 입력하셨습니다.
                 </div>
             {% endif %}
-            <div class="col-sm-10 col-sm-offset-1 btn btn-facebook cursor-pointer mt20">Facebook으로 로그인</div>
-            <div class="col-sm-10 col-sm-offset-1 btn btn-kakao cursor-pointer mt20">카카오톡으로 로그인</div>
+{#            <a href="{% url "facebook_login" %}">#}
+            <a href="{% provider_login_url "facebook" method="oauth2" %}">
+                <div class="col-sm-10 col-sm-offset-1 btn btn-facebook cursor-pointer mt20">Facebook으로 로그인</div>
+            </a>
+            <a href="{% url 'kakao_login' %}">
+                <div class="col-sm-10 col-sm-offset-1 btn btn-kakao cursor-pointer mt20">카카오톡으로 로그인</div>
+            </a>
             <div class="col-sm-10 col-sm-offset-1 login-divider"></div>
         <form class="form-horizontal" action="" method="post">
         {% csrf_token %}
             <div class="form-group">
                     <label for="username"></label>
                     <div class="col-sm-10 col-sm-offset-1">
-                        <input type="email" class="form-control" name="username" id="username" placeholder="Email">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="ID">
                     </div>
             </div>
             <div class="form-group">
@@ -28,6 +39,9 @@
             <div class="form-group">
                 <div class="col-sm-10  col-sm-offset-1">
                         <button type="submit" class="btn btn-danger col-sm-4">로그인</button>
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
                     <a href="{% url 'register' %}"
                         <button class="btn btn-danger col-sm-4 col-sm-offset-4">회원가입</button>
                     </a>
@@ -36,4 +50,5 @@
         </form>
         </div>
     </div>
+    {% endif %}
 {% endblock %}

@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, url
 from user import views
 
+#kakao url
 urlpatterns = patterns('',
-    url(r'^login/$', views.LoginView.as_view(), name='login'),
-    url(r'^register/$', views.RegisterView.as_view(), name='register'),
-    url(r'logout/$', views.LogoutView, name='logout'),
+        url(r'^login/$', views.KaKaoLogin, name='kakao_login' ),
+        url(r'^kakao_oauth/$', views.KaKaoOAuth, name='kakao_OAuth' ),
+        url(r'^kakao_email/$', views.KaKaoEmailInput.as_view(), name='kakao_email_input'),
 )

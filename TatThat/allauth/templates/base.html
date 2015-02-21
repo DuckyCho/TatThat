@@ -1,0 +1,43 @@
+{% extends 'index_base.html' %}
+{% load url from future %}
+
+  {% block head %}
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+  {% endblock %}
+
+
+ {% block contents %}
+    {% block body %}
+
+    {% if messages %}
+	    {% for message in messages %}
+	        <div class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button> 
+                {{message}}
+            </div>
+	    {% endfor %}
+    {% endif %}
+    <ul class="nav nav-tabs white-line">
+            {% if user.is_authenticated %}
+                <li {% if isAccountIndexView %}class="active"{% endif %} role="presentation"><a href="{% url 'account_index' %}">내 정보</a></li>
+                <li {% if isChangePasswordView %}class="active"{% endif %} role="presentation"><a href="{% url 'account_change_password' %}">비밀번호 변경</a></li>
+                <li {% if isLogoutView %}class="active"{% endif %} role="presentation"><a href="{% url 'account_logout' %}">로그아웃</a></li>
+                {% else %}
+                <li role="presentation"><a href="{% url 'account_login' %}">Sign In</a></li>
+                <li role="presentation"><a href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    <div class="panel panel-danger">
+        <div class="panel-body">
+
+            {% block content %}
+            {% endblock %}
+            {% endblock %}
+            {% block extra_body %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
