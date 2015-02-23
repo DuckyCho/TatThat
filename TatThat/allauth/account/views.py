@@ -678,12 +678,15 @@ class AccountIndexView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.POST:
-            subscribe_obj = SubscribeUser.objects.filter(user_id=request.user.id)
+            try:
+                subscribe_obj = SubscribeUser.objects.get(user_id=request.user.id)
+            except SubscribeUser.DoesNotExist:
+                subscribe_obj = None
             isSubscribe = request.POST.get('subscribe','')
             if subscribe_obj and isSubscribe == '':
-                SubscribeUser.objects.filter(user_id=request.user.id).delete()
+                subscribe_obj.delete()
                 return render_to_response( 'account/account_index.html', {"isAccountIndexView": True, "isSaved": True}, context_instance=RequestContext(request))
-            elif len(subscribe_obj) == 0 and isSubscribe == 'on':
+            elif not subscribe_obj and isSubscribe == 'on':
                 subsuser = SubscribeUser(user_id=request.user)
                 subsuser.save()
                 return render_to_response( 'account/account_index.html', {"isAccountIndexView": True, "isSaved": True, "isSubscribe": True}, context_instance=RequestContext(request))

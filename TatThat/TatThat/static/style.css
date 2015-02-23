@@ -77,6 +77,12 @@ body{
     margin-top: 1em;
     margin-bottom: 1em;
 }
+.login-divider-3px{
+    height: 3px;
+    background: #FFFFFF;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 .form-control{
     border : 0px;
 }
@@ -543,4 +549,34 @@ div #search-bar{
 }
 .text-black{
     color: #000000;
+}
+.background-400{
+    background: url("./img/400back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background-403{
+    background: url("./img/403back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background-404{
+    background: url("./img/404back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.background-500{
+    background: url("./img/500back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.jumbotron-error{
+    height:40em;
+}
+.err-desc{
+    font-size: 1.5em;
 }

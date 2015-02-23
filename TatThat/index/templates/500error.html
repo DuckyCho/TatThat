@@ -1,7 +1,13 @@
 {% extends "index_base.html" %}
+{% block head %}
+    <title>Sorry..500</title>
+{% endblock %}
 {% block contents %}
-    <div class="row">
-        sorry!
-    </div>
-
+     <div class="jumbotron background-500 col-md-6 col-md-offset-3 mt4em jumbotron-error">
+         <h1>500</h1>
+         <div class="login-divider-3px"></div>
+         <h3>INTERNAL ERROR</h3>
+         <h5>IT'S NOT YOU. IT'S US.</h5>
+        <div class="err-desc mt4em">죄송합니다.<br>요청하신 페이지는 연결이 잠시 중단되었습니다.<br>빠른시간내에 조치하겠습니다.<br></div>
+     </div>
 {% endblock %}
