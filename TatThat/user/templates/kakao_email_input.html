@@ -1,4 +1,5 @@
 {% extends 'index_base.html' %}
+{% load staticfiles %}
 {% load socialaccount %}
 {% block contents %}
     {% if user.is_authenticated %}
@@ -7,7 +8,7 @@
         </script>
     {% else %}
     <div class="row mt20">
-        <div class="jumbotron background-kakao-login col-md-6 col-md-offset-3 mt4em" style="text-shadow:1px 1px 4px #000000; height: 30em; padding-top: 30px">
+        <div class="jumbotron background-kakao-login col-md-6 col-md-offset-3 mt4em" style="text-shadow:1px 1px 4px #000000; height: 36em; padding-top: 30px">
             <h6 style="color:#ffffff;">
                 거의 다 됐어요!
             </h6>
@@ -18,6 +19,18 @@
             </p>
             <form class="form-horizontal" action="" method="post">
             {% csrf_token %}
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="username" id="username" data-minlength="4"
+                                {% if isUsernameError %}
+                                placeholder="{{ isUsernameError }}은 이미 가입된 ID입니다. 다른 ID를 사용해주세요."
+                                {% else %}
+                                placeholder="TatThat에서 사용할 ID (최소 4자 이상)"
+                                {% endif %} required>
+                        <div class="text-danger text-right" id="username-validity"></div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="last_name" class="col-sm-2 control-label">성</label>
                     <div class="col-sm-10">
@@ -35,10 +48,11 @@
                     <div class="col-sm-10">
                         <input type="email" class="form-control" name="email" id="email"
                             {% if isEmailError %}
-                            placeholder="{{ isEmailError }}은 이미 가입된 Email입니다."
+                            placeholder="{{ isEmailError }}은 이미 가입된 Email입니다. 다른 Email을 사용해주세요."
                             {% else %}
                             placeholder="email"
                             {% endif %} required>
+                        <div class="text-danger text-right" id="email-validity"></div>
                         <input type="checkbox" name="subscribe" id="subscribe">  인기 타투 도안, 프로모션 정보 수신 (선택사항)
                     </div>
                 </div>
@@ -50,5 +64,6 @@
             </form>
         </div>
     </div>
+        <script src="{% static 'register.js' %}"></script>
     {% endif %}
 {% endblock %}

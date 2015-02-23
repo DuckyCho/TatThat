@@ -2,12 +2,14 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.sites.models import Site
 from django.http import (HttpResponseRedirect, Http404,
                          HttpResponsePermanentRedirect)
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateResponseMixin, View, TemplateView
 from django.views.generic.edit import FormView
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import redirect
 from django.views.decorators.debug import sensitive_post_parameters
@@ -26,7 +28,7 @@ from .forms import LoginForm, ResetPasswordKeyForm
 from .forms import ResetPasswordForm, SetPasswordForm, SignupForm
 from .utils import sync_user_email_addresses
 from .models import EmailAddress, EmailConfirmation
-from allauth.socialaccount.models import SocialAccount
+
 from . import signals
 from . import app_settings
 
@@ -704,3 +706,27 @@ class AccountIndexView(TemplateView):
 
 class PasswordChangeSocial(TemplateView):
     template_name = "account/password_change_social.html"
+
+
+def valid_check(request):
+    if request.GET:
+        dict = request.GET
+        for key, value in dict.iteritems():
+            if key == "username":
+                try:
+                    user = User.objects.get(username=value)
+                except User.DoesNotExist:
+                    user = None
+            elif key == "email":
+                try:
+                    user = User.objects.get(email=value)
+                except User.DoesNotExist:
+                    user = None
+
+            if user:
+                return HttpResponse('invalid')
+            else:
+                return HttpResponse('valid')
+
+    else:
+        return HttpResponse('invalid')

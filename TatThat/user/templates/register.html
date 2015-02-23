@@ -14,13 +14,12 @@
                     <label for="username" class="col-sm-3 control-label">ID</label>
                     <div class="col-sm-7">
                         <input type="text" data-minlength="4" class="form-control" name="username" id="username"
-                                {% if isEmailError %}
+                                {% if isUsernameError %}
                                 placeholder="{{ isUsernameError }}은 이미 가입된 ID입니다."
                                 {% else %}
                                 placeholder="최소 4자 이상"
                                 {% endif %} required>
-                    <div class="help-block">최소 4자 이상</div>
-
+                        <div class="text-danger text-right" id="username-validity"></div>
                     </div>
                 </div>
 
@@ -28,13 +27,13 @@
                     <label for="password" class="col-sm-3 control-label">비밀번호</label>
                     <div class="col-sm-7">
                             <input type="password" data-minlength="6" name="password" class="form-control" id="password" placeholder="비밀번호" required>
-                            <div class="help-block">최소 6자 이상</div>
+                            <div class="help-block text-right">최소 6자 이상</div>
                             <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-match-error="비밀번호가 일치하지 않습니다." placeholder="비밀번호를 다시 입력해주세요." required>
-                            <div class="help-block with-errors"></div>
+                            <div class="help-block with-errors text-right"></div>
                     </div>
                 </div>
                 <div class="form-group mt20">
-                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <label id="email-label" for="email" class="col-sm-3 control-label">Email</label>
                         <div class="col-sm-7">
                             <input type="email" class="form-control" name="email" id="email"
                                 {% if isEmailError %}
@@ -42,6 +41,7 @@
                                 {% else %}
                                 placeholder="email"
                                 {% endif %} required>
+                            <div class="text-danger text-right" id="email-validity"></div>
                             <input type="checkbox" name="subscribe" id="subscribe">  인기 타투 도안, 프로모션 정보 수신 허용(선택사항)
                         </div>
                 </div>
@@ -70,4 +70,5 @@
         </div>
     </div>
     <script src="{% static 'bootstrap/js/validator.js' %}"></script>
+    <script src="{% static 'register.js' %}"></script>
 {% endblock %}

@@ -23,8 +23,10 @@
             </p>
         <form action="" method="post">
             {% csrf_token %}
-            <input name="subscribe" id="subscribe" type="checkbox" {% if isSubscribe %}checked{% endif %} style=""> 인기 타투 도안, 프로모션 정보 수신 허용(선택사항)
-            <button type="submit" class="btn btn-sm btn-danger mt20" style="text-shadow: 0px 0px 0px #ffffff">변경사항저장</div>
+            <input name="subscribe" id="subscribe" type="checkbox" {% if isSubscribe %}checked{% endif %} style=""> 인기 타투 도안, 프로모션 정보 수신 허용(선택사항)<br>
+            <button type="submit" class="btn btn-sm btn-danger mt20" style="text-shadow: 0px 0px 0px #ffffff">변경사항저장</button>
         </form>
+    <a href="{% url "kakao_unlink" %}">탈퇴</a>
+
     </div>
 {% endblock %}

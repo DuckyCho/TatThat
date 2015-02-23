@@ -18,6 +18,7 @@ urlpatterns = patterns(
     url(r"^password/change/social/$", views.PasswordChangeSocial.as_view(), name='account_social_user_change_password'),
     url(r"^password/change/$", views.password_change, name="account_change_password"),
     url(r"^kakao/", include(urls)),
+    url(r"^valid-check", views.valid_check, name="valid_check"),
     # url(r"^password/set/$", views.password_set, name="account_set_password"),
     #
     # url(r"^inactive/$", views.account_inactive, name="account_inactive"),

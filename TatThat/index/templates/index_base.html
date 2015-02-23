@@ -61,11 +61,11 @@
                     <li class="dropdown">
 
                         {% if user.is_authenticated %}
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} 님<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/accounts">내 정보</a>
                                 </li>
-                                <li><a href="#">구매내역</a>
+                                <li class="cursor-pointer" data-toggle="modal" data-target="#shop_notopen"><a href="#">구매내역</a>
                                 </li>
                                 <li><a href="#">스크랩북</a>
                                 </li>
