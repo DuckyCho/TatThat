@@ -14,30 +14,12 @@
 <body>
     <!--    <nav class="navbar navbar-default navbar-fixed-top">-->
     <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{% url "index" %}">
-                    <div class="brand-image"></div>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="{% block isActiveSearch %}{% endblock %}"><a href={% url "searchMain" %}>SEARCH</a>
-                    </li>
-                    <li class="{% block isActiveShop %}{% endblock %} cursor-pointer" data-toggle="modal" data-target="#shop_notopen"><a>SHOP</a>
-                    </li>
-                </ul>
-                <div class="modal fade" id="shop_notopen" tabindex="-1" role="alert" aria-labelledby="shop_notopenLabel" aria-hidden="true">
+    <div class="modal fade" id="shop_notopen" tabindex="-1" role="alert" aria-labelledby="shop_notopenLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content background-not-yet" style="height: 40em;">
                           <div class="modal-header" style="border:none;">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="text-shadow:1px 1px 4px #000000;">&times;</span></button>
-                            <span class="modal-title" id="myModalLabel" style="text-shadow:1px 1px 4px #000000;">Oops!Sorry!</span>
+                            <span class="modal-title" style="text-shadow:1px 1px 4px #000000;">Oops!Sorry!</span>
                           </div>
                           <div class="modal-body">
                             <h4 class="mt4em" style="color:#ffffff; text-shadow:1px 1px 4px #000000;">
@@ -57,6 +39,25 @@
                         </div>
                     </div>
                 </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url "index" %}">
+                    <div class="brand-image"></div>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="{% block isActiveSearch %}{% endblock %}"><a href={% url "searchMain" %}>SEARCH</a>
+                    </li>
+                    <li class="{% block isActiveShop %}{% endblock %} cursor-pointer" data-toggle="modal" data-target="#shop_notopen"><a>SHOP</a>
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
 
@@ -67,7 +68,7 @@
                                 </li>
                                 <li class="cursor-pointer" data-toggle="modal" data-target="#shop_notopen"><a href="#">구매내역</a>
                                 </li>
-                                <li><a href="#">스크랩북</a>
+                                <li><a href="{% url 'my_scrap_book' %}">스크랩북</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'account_logout' %}">로그아웃</a>

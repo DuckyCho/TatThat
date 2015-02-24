@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -140,8 +140,7 @@ def UnlinkKaKaoUser(request):
 def KaKaoOAuth(request):
     code = request.GET.get('code','')
     if code is None:
-        error_url = reverse('500error')
-        return HttpResponseRedirect(error_url)
+        return render_to_response('500error.html',context_instance=RequestContext(request))
     tokens = GetKakaoUserToken(request, code)
     user_info = GetKakaoUserInfo(tokens['access_token'])
     if user_info is None:
@@ -188,8 +187,7 @@ class KaKaoEmailInput(TemplateView):
                 properties= json.dumps({'email': input_email, 'last_name': input_last_name, 'first_name': input_first_name, 'nickname': input_nickname})
                 json_user_id = UpdateKakaoUser(request.session['_access_token'],properties)
                 if json_user_id is None:
-                    error_url = reverse('500error')
-                    return HttpResponseRedirect(error_url)
+                    return render_to_response('500error.html',context_instance=RequestContext(request))
                 user_info = GetKakaoUserInfo(request.session['_access_token'])
                 username = user_info['properties']['nickname']
                 new_user = User.objects.create(username=username, email=input_email, first_name=input_first_name, last_name=input_last_name,)

@@ -1,7 +1,27 @@
 {% extends "index_base.html" %}
 {% load tag_button %}
 {% load scrap_count %}
+{% load staticfiles %}
 {% block contents %}
+    <div class="modal fade" id="scrap_modal" tabindex="-1" role="alert" aria-labelledby="scrap_modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height: 15em; background: url({{ pic.url }}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+              <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="text-shadow:1px 1px 4px #000000;">&times;</span></button>
+                <span id="comment_subtitle" class="modal-title" style="text-shadow:1px 1px 4px #000000;"></span>
+              </div>
+              <div class="modal-body">
+                <h4 id="comment_title" style="color:#ffffff; text-shadow:1px 1px 4px #000000;">
+
+                </h4>
+                <div class="login-divider mt4em" style="background-color: #ffffff; height:3px; box-shadow: 1px 1px 4px #000000"></div>
+                <p id="comment_desc" style="font-weight: normal; font-size: 1.2em; text-shadow:1px 1px 4px #000000;">
+
+                </p>
+              </div>
+            </div>
+        </div>
+    </div>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-pic">
@@ -10,7 +30,7 @@
             <div class="panel-body">
                  <div class="col-lg-12 mt20 text-center">
                      <a href="{{ pic.url }}">
-                        <img class="img-responsive-nonblock" src="{{ pic.url }}">
+                        <img id="pic" class="img-responsive-nonblock" src="{{ pic.url }}" pid="{{ pic.id }}">
                      </a>
                  </div>
             </div>
@@ -28,11 +48,12 @@
                             <a href="{% if daily %}{% url 'index' %}{% else %}{% url "index" %}{% endif %}">
                             <div class="btn btn-danger"><span class="glyphicon glyphicon-th-list"></span>   목록으로</div>
                             </a>
-                            <div class="btn btn-danger"><span class="glyphicon glyphicon-plus"></span>   스크랩</div>
+                            <div id="{% if user.is_authenticated %}scrap-button{% else %}non-user-scrap-button{% endif %}" class="btn btn-danger {% if isAlreadyScraped %}active{% endif %}"><span class="glyphicon glyphicon-plus"></span>   스크랩</div>
                         </div>
                         <div class="col-lg-3">
                             <h6 class="text-right">
-                                <span class="glyphicon glyphicon-share-alt"></span>  {% scrap_count pic.id %}
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                                <span id="scrap-count">{% scrap_count pic.id %}</span>
                             </h6>
                         </div>
                     </div>
@@ -41,6 +62,6 @@
         </div>
     </div>
 </div>
-
+<script src="{% static 'scrap.js' %}"></script>
 {% endblock %}
 

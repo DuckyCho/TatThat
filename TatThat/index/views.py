@@ -1,8 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render_to_response
-from django.http.response import HttpResponse
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
+
 
 class IndexView(TemplateView):
     template_name = 'index_page.html'

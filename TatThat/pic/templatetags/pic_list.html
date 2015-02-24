@@ -5,6 +5,15 @@
             검색 결과가 없습니다.
         </h4>
     </div>
+{% elif isScrapEmpty%}
+    <div class="text-center">
+        <h5>
+            아직 스크랩하신 사진이 없네요!
+        </h5>
+        <h5>
+            마음에 드는 도안, 사진을 스크랩해보세요!
+        </h5>
+    </div>
 {% else %}
     {% for pic, tag in pics %}
     <div class="col-md-3">

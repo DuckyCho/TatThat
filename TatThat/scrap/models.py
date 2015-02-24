@@ -7,5 +7,5 @@ class Scrap(models.Model):
     pic_id = models.ForeignKey(Pic)
     user_id = models.ForeignKey(User)
 
-    # class Meta:
-    #     unique_together = ('pic_id','user_id')
+    class Meta:
+        unique_together = ('pic_id','user_id')

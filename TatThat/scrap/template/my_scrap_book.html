@@ -1,0 +1,22 @@
+{% extends "index_base.html" %}
+{% load pic_list %}
+{% load staff_pick_banner %}
+{% load staticfiles %}
+{% block contents %}
+<div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default staff-pick">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <span class="glyphicon glyphicon-book"></span>
+                            스크랩북
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {% pic_list title='my_scrap_book' args=user.id %}
+                    </div>
+                </div>
+            </div>
+       </div>
+{% endblock %}
+

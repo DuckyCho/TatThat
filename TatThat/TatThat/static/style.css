@@ -296,11 +296,14 @@ a .btn-facebook{
 .btn-danger:focus,
 .btn-danger.focus,
 .btn-danger:active,
-.btn-danger.active,
 .open > .dropdown-toggle.btn-danger{
   color: #ffffff;
   background-color: #B52C38;
   border-color: #B52C38;
+}
+.btn-danger.active{
+    background-color: #610A1D;
+    border-color: #610A1D;
 }
 .btn-danger.disabled{
     background-color: #888888;
