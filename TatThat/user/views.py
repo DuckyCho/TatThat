@@ -88,7 +88,7 @@ def KaKaoLogin(request):
     else:
         client_id = SocialApp.objects.get(provider='kakao').client_id
         args={'client_id': client_id,
-              'redirect_uri': 'http://localhost:8000/accounts/kakao/kakao_oauth/',
+              'redirect_uri': 'http://tatthat.co.kr/accounts/kakao/kakao_oauth/',
               'response_type': 'code'
         }
         url = 'https://kauth.kakao.com/oauth/authorize?client_id=%s&redirect_uri=%s&response_type=%s' % (args['client_id'], args['redirect_uri'],args['response_type'])

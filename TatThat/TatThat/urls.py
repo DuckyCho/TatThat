@@ -9,6 +9,7 @@ handler500 = 'index.views.Error500View'
 
 urlpatterns = patterns('',
     url(r'^$',include('index.urls')),
+    url(r'^footer/',include('footer.urls')),
     url(r'^pic/',include('pic.urls')),
     url(r'^scrap/',include('scrap.urls')),
     url(r'^search/', include('search.urls')),
